@@ -1,5 +1,7 @@
 package bkhn.att.entities;
 
+//Fuck Ubuntu!
+
 public class Country {
 	int id;		//auto increase
 	String countryID;	//Mã Quốc gia
