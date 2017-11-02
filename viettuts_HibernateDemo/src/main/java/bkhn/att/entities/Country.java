@@ -2,7 +2,7 @@ package bkhn.att.entities;
 
 public class Country {
 	int id;		//auto increase
-	String countryID;
+	String countryID;	//Mã Quốc gia
 	String name;
 	String capital;
 	
