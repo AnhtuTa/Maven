@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="bkhn.att.entities.Country" table="country">
+        <meta attribute="class-description">Lớp này chưa thông tin chi tiết về Quốc gia.</meta>
+        <id name="id" type="int" column="id">
+            <generator class="native" />
+        </id>
+        <property name="countryID" column="countryID" type="string" />
+        <property name="name" column="name" type="string" />
+        <property name="capital" column="capital" type="string" />
+    </class>
+</hibernate-mapping>
+
+<!-- 
+Các lớp generator phổ biến:
+increment – phát sinh id (loại long, short hoặc int) là duy nhất chỉ khi không có tiến trình khác chèn dữ liệu vào cùng bảng.
+identity – nó hỗ trợ cột id trong DB2, MySQL, MS SQL Server, Sybase và HypersonicSQL. Id được trả về có loại long, short hoặc int.
+sequence – phát sinh sequence sử dụng một sequence trong DB2, PostgreSQL, Oracle, SAP DB, McKoi hoặc Interbase. Id được trả về có loại long, short hoặc int.
+hilo – Bộ phát sinh hilo sử dụng thuật toán hilo để phát sinh id.
+native – Nó sẽ chọn id, sequence hoặc hilo phụ thuộc vào khả năng CSDL phía dưới.Thuộc tính unsaved-value mô tả giá trị của thuộc tính id cho các thể hiện transient của lớp đó.
+ -->
