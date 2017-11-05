@@ -30,6 +30,7 @@ public class HQLDemo {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		try {
 			factory = HibernateUtils.getSessionFactory();
@@ -50,5 +51,23 @@ public class HQLDemo {
 		
 		hql = "FROM Pupil ORDER BY name";
 		demo.showResult(hql);
+		
+		hql = "FROM Pupil WHERE id > :puID";
+		Query query = session.createQuery(hql);
+		query.setParameter("puID", 7);
+		List<Pupil> pupilList = query.getResultList();
+		for(Pupil p : pupilList) {
+			System.out.println(p.getInfo());
+		}
+		System.out.println("====================");
+		
+		hql = "select count(p.name) from Pupil p";
+		query = session.createQuery(hql);
+		List<Long> kqList = query.getResultList();
+		System.out.println(kqList.size());		//1
+		System.out.println(kqList.get(0));		//10
+		System.out.println("====================");
+		
+		session.close();
 	}
 }
