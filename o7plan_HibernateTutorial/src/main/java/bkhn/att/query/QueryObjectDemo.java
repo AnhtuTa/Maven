@@ -9,7 +9,7 @@ import bkhn.att.hibernate.HibernateUtils;
 import bkhn.att.entities.Employee;
 
 public class QueryObjectDemo {
-
+	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();

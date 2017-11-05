@@ -1,5 +1,6 @@
 package bkhn.att.entities;
 
+//Dùng file config .xml để mapping với table trong database
 public class Pupil {
 	int id;		//auto increase
 	String name;

@@ -5,9 +5,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 import bkhn.att.entities.Pupil;
+import bkhn.att.hibernate.HibernateUtils;
 
 
 public class ManagePupil {
@@ -15,7 +15,8 @@ public class ManagePupil {
 	
 	public static void main(String[] args) {
 		try {
-            factory = new Configuration().configure().buildSessionFactory();
+            //factory = new Configuration().configure().buildSessionFactory();
+			factory = HibernateUtils.getSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
