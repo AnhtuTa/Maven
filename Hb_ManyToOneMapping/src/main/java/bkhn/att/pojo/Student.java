@@ -1,9 +1,14 @@
 package bkhn.att.pojo;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	int id;
 	String name;
 	SVClass svclass;
+	Cmtnd cmt;
 	
 	public Student() {}
 	
@@ -12,6 +17,14 @@ public class Student {
 		this.id = id;
 		this.name = name;
 		this.svclass = cl;
+	}
+
+	public Student(int id, String name, SVClass svclass, Cmtnd cmt) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.svclass = svclass;
+		this.cmt = cmt;
 	}
 
 	public int getId() {
@@ -40,5 +53,13 @@ public class Student {
 
 	public String getInfo() {
 		return this.getId() + " - " + this.getName();
+	}
+
+	public Cmtnd getCmt() {
+		return cmt;
+	}
+
+	public void setCmt(Cmtnd cmt) {
+		this.cmt = cmt;
 	}
 }

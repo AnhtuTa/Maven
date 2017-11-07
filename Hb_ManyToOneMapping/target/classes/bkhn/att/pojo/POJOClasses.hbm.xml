@@ -11,12 +11,13 @@
 			<generator class="assigned" />
 		</id>
 		<property name="name" column="name" type="string" />
-		
-		<!-- Chú ý rằng thuộc tính svclass có kiểu SVClass -->
+
 		<many-to-one name="svclass" class="bkhn.att.pojo.SVClass"> <!-- name="svclass": tên thuộc tính cần mapping -->
 																   <!-- class="bkhn.att.pojo.SVClass": Tên lớp cần mapping tới -->
 			<column name="class_id" />							   <!-- <column name="class_id" />: Tên cột trong table Student -->
 		</many-to-one>
+		
+		<one-to-one name="cmt" class="bkhn.att.pojo.Cmtnd" cascade="save-update"></one-to-one>
 	</class>
 	
 	<class name="bkhn.att.pojo.SVClass" table="svclass">
@@ -31,4 +32,17 @@
 			<column name="faculty" />
 		</property>
 	</class>
+	
+	<class name="bkhn.att.pojo.Cmtnd" table="cmtnd">
+		<id name="studentID" type="int">
+			<column name="student_id" />
+			<generator class="assigned" />
+		</id>
+		<property name="cmtID" type="string" column="cmt_id"/>
+		<property name="ngayCap" type="date" column="ngay_cap"/>
+		<property name="noiCap" type="string" column="noi_cap" />
+		
+		<one-to-one name="student" class="bkhn.att.pojo.Student" cascade="save-update"></one-to-one>
+	</class>
 </hibernate-mapping>
+
