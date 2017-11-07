@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- CHÚ Ý: cách mapping dùng các thuộc tính, các phần tử của Student và SVCLass khác nhau 1 chút -->
+
+<hibernate-mapping>
+	<class name="bkhn.att.pojo.Student" table="student">
+		<id name="id" column="id" type="integer">
+			<generator class="assigned" />
+		</id>
+		<property name="name" column="name" type="string" />
+		
+		<!-- Chú ý rằng thuộc tính svclass có kiểu SVClass -->
+		<many-to-one name="svclass" class="bkhn.att.pojo.SVClass"> <!-- name="svclass": tên thuộc tính cần mapping -->
+																   <!-- class="bkhn.att.pojo.SVClass": Tên lớp cần mapping tới -->
+			<column name="class_id" />							   <!-- <column name="class_id" />: Tên cột trong table Student -->
+		</many-to-one>
+	</class>
+	
+	<class name="bkhn.att.pojo.SVClass" table="svclass">
+		<id name="id" type="string">
+			<column name="id" />
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="string">
+			<column name="name" />
+		</property>
+		<property name="faculty" type="string">
+			<column name="faculty" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -27,10 +27,5 @@
 		<!-- List các file mapping XML. Nếu dùng file Pupil2.java thì ko cần nữa! -->
 		<mapping resource="Country.hbm.xml" />
 		<mapping resource="Pupil.hbm.xml" />
-		
-		<!-- Nếu dùng file Pupil2.java thì cần phần này! -->
-		<!-- 
-		<mapping class="bkhn.att.entities.Pupil2" />
-		 -->
 	</session-factory>
 </hibernate-configuration>

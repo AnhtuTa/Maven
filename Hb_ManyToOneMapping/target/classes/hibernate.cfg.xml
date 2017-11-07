@@ -20,12 +20,12 @@
 
 		<!-- Thông tin kết nối db -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/demo</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hbdemo</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">5555</property>
 
 		<!-- List các file mapping XML. Nếu dùng file Pupil2.java thì ko cần nữa! -->
-		<mapping resource="Country.hbm.xml" />
-		<mapping resource="Pupil.hbm.xml" />
+		<mapping resource="bkhn/att/pojo/POJOClasses.hbm.xml" />
+		
 	</session-factory>
 </hibernate-configuration>
