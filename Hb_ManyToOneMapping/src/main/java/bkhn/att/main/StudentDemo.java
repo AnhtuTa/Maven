@@ -1,7 +1,8 @@
 package bkhn.att.main;
 
-import java.sql.Date;
+//import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Query;
 
@@ -12,6 +13,7 @@ import org.hibernate.Transaction;
 
 import bkhn.att.hibernate.HibernateUtils;
 import bkhn.att.pojo.Cmtnd;
+import bkhn.att.pojo.Course;
 import bkhn.att.pojo.SVClass;
 import bkhn.att.pojo.Student;
 
@@ -30,7 +32,7 @@ public class StudentDemo {
 //		System.out.println("Show Student after closing Session");
 //		sd.showStudentsAfterCloseSession();
 		
-		SVClass svc = new SVClassDemo().getSVClass("cntt2.01k58"); //sd.getSVClass("cntt2.01k58");
+		//SVClass svc = new SVClassDemo().getSVClass("cntt2.01k58"); //sd.getSVClass("cntt2.01k58");
 		//int kq = sd.addStudent(new Student(20131103, "Huy ga", svc));
 		//System.out.println("ID cua SV vua duoc them vao DB = " + kq);
 		
@@ -43,8 +45,8 @@ public class StudentDemo {
 		//int kq3 = sd.updateStudentHQL(20131001, "Nguyen Van Linh", svc);
 		//System.out.println("kq3 = " + kq3);
 		
-		int kq3 = sd.addStudent(new Student(20131007, "Nguyen Van Trung", svc), new Cmtnd(20131007, "12350", Date.valueOf("2010-01-29"), "Hai Phong"));
-		System.out.println("kq3 = " + kq3);
+		//int kq3 = sd.addStudent(new Student(20131007, "Nguyen Van Trung", svc), new Cmtnd(20131007, "12350", Date.valueOf("2010-01-29"), "Hai Phong"));
+		//System.out.println("kq3 = " + kq3);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -56,7 +58,7 @@ public class StudentDemo {
 			ts = session.beginTransaction();
 			List<Student> stList = session.createQuery("FROM Student").list();
 			for (Student st : stList) {
-				System.out.println(st.getInfo());
+				System.out.println("\n" + st.getInfo());
 				
 				SVClass svc = st.getSvclass();
 				System.out.println("\tClass's ID: " + svc.getId());
@@ -64,8 +66,17 @@ public class StudentDemo {
 				System.out.println("\tFaculty: " + svc.getFaculty());
 				
 				Cmtnd cmt = st.getCmt();
-				if(cmt != null) System.out.println("\tSo CMND: " + cmt.getCmtID());
-				else System.out.println("\tSo CMND: Khong co");
+				if(cmt != null) System.out.println("\n\tSo CMND: " + cmt.getCmtID());
+				else System.out.println("\n\tSo CMND: Khong co!");
+				
+				System.out.println("\n\tCac khoa hoc da dang ky:");
+				Set<Course> cSet = st.getCourseSet();
+				if(cSet.size() == 0) {
+					System.out.println("\tSV nay chua dang ky khoa hoc nao!");
+				} else for(Course c : cSet) {
+					System.out.println("\t" + c.getId() + " - " + c.getSubjectID() + " - " + c.getTime());
+				}
+				
 			}
 
 			ts.commit();
@@ -111,7 +122,6 @@ public class StudentDemo {
 			}
 		}
 	}
-
 	
 	/*
 	 * Chú ý: ko có lệnh:

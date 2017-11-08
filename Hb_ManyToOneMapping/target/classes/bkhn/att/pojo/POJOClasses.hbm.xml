@@ -4,7 +4,11 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <!-- CHÚ Ý: cách mapping dùng các thuộc tính, các phần tử của Student và SVCLass khác nhau 1 chút -->
-
+<!-- Các quan hệ:
+		Student - SVClass: n-1
+		SVClass - Student: 1-n
+		Student - Cmtnd: 1-1
+ -->
 <hibernate-mapping>
 	<class name="bkhn.att.pojo.Student" table="student">
 		<id name="id" column="id" type="integer">
@@ -14,10 +18,15 @@
 
 		<many-to-one name="svclass" class="bkhn.att.pojo.SVClass"> <!-- name="svclass": tên thuộc tính cần mapping -->
 																   <!-- class="bkhn.att.pojo.SVClass": Tên lớp cần mapping tới -->
-			<column name="class_id" />							   <!-- <column name="class_id" />: Tên cột trong table Student -->
+			<column name="class_id" not-null="true" />							   <!-- <column name="class_id" />: Tên cột trong table Student -->
 		</many-to-one>
 		
 		<one-to-one name="cmt" class="bkhn.att.pojo.Cmtnd" cascade="save-update"></one-to-one>
+		
+		<set name="courseSet" cascade="save-update" table="register">
+			<key column="student_id"/>
+			<many-to-many column="course_id" class="bkhn.att.pojo.Course" />
+		</set>
 	</class>
 	
 	<class name="bkhn.att.pojo.SVClass" table="svclass">
@@ -31,6 +40,11 @@
 		<property name="faculty" type="string">
 			<column name="faculty" />
 		</property>
+		
+		<set name="stSet" cascade="all">
+			<key column="class_id" />		<!-- class_id là cột của table student, cột ý tham chiếu đến table này (svclass) -->
+			<one-to-many class="bkhn.att.pojo.Student" />
+		</set>
 	</class>
 	
 	<class name="bkhn.att.pojo.Cmtnd" table="cmtnd">
@@ -42,7 +56,16 @@
 		<property name="ngayCap" type="date" column="ngay_cap"/>
 		<property name="noiCap" type="string" column="noi_cap" />
 		
-		<one-to-one name="student" class="bkhn.att.pojo.Student" cascade="save-update"></one-to-one>
+		<one-to-one name="student" class="bkhn.att.pojo.Student" cascade="save-update"></one-to-one>	<!-- Trường hợp one-to-one ko cần chỉ ra id mapping vì chắc chắn 2 table phải có 1 trường trùng nhau để liên kết với nhau -->	
+	</class>
+	
+	<class name="bkhn.att.pojo.Course" table="course">
+		<id name="id" type="string">
+			<column name="id" />
+			<generator class="assigned" />
+		</id>
+		<property name="subjectID" type="string" column="subject_id" />
+		<property name="time" type="string" column="time" />
 	</class>
 </hibernate-mapping>
 

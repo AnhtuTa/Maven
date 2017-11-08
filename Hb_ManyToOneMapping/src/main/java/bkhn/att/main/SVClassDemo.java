@@ -1,6 +1,7 @@
 package bkhn.att.main;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Query;
 
@@ -11,6 +12,7 @@ import org.hibernate.Transaction;
 
 import bkhn.att.hibernate.HibernateUtils;
 import bkhn.att.pojo.SVClass;
+import bkhn.att.pojo.Student;
 
 public class SVClassDemo {
 	private SessionFactory factory;
@@ -44,6 +46,31 @@ public class SVClassDemo {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void showSVClass() {
+		Session ss = factory.openSession();
+		Transaction ts = null;
+		
+		try {
+			ts = ss.beginTransaction();
+			List<SVClass> classList = ss.createQuery("FROM SVClass").list();
+			for(SVClass svc : classList) {
+				System.out.println(svc.getInfo());
+				Set<Student> stSet = svc.getStSet();
+				for(Student st : stSet) {
+					System.out.println("\t" + st.getInfo());
+				}
+			}
+			
+			ts.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if(ts != null) ts.rollback();
+		} finally {
+			ss.close();
+		}
+	}
+	
 	public String addSVClass(SVClass svc) {
 		Session ss = factory.openSession();
 		Transaction ts = null;
@@ -64,9 +91,9 @@ public class SVClassDemo {
 	
 	public static void main(String[] args) {
 		SVClassDemo svcd = new SVClassDemo();
-		String kq = svcd.addSVClass(new SVClass("cntt2.02k58", "CNTT2.02 - K58", "CNTT"));
-		System.out.println("kq = Id cua lop vua duoc them vao DB = " + kq);
+		//String kq = svcd.addSVClass(new SVClass("cntt2.02k58", "CNTT2.02 - K58", "CNTT"));
+		//System.out.println("kq = Id cua lop vua duoc them vao DB = " + kq);
 		
-		
+		svcd.showSVClass();
 	}
 }

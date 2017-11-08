@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 
 import bkhn.att.hibernate.HibernateUtils;
 import bkhn.att.pojo.Cmtnd;
+import bkhn.att.pojo.Student;
 
 
 public class CmtndDemo {
@@ -18,6 +19,28 @@ public class CmtndDemo {
 	
 	public CmtndDemo() {
 		factory = HibernateUtils.getSessionFactory();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void showCmtnd() {
+		Session ss = factory.openSession();
+		Transaction ts = null;
+		
+		try {
+			ts = ss.beginTransaction();
+			List<Cmtnd> cmtList = ss.createQuery("FROM Cmtnd").list();
+			for(Cmtnd cmt : cmtList) {
+				System.out.println(cmt.getCmtID());
+				System.out.println(cmt.getStudentID());
+				Student st = cmt.getStudent();
+				System.out.println("\t" + st.getInfo());
+			}
+		} catch (HibernateException e) {
+			if (ts != null) ts.rollback();
+			e.printStackTrace();
+		} finally {
+			ss.close();
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -43,5 +66,10 @@ public class CmtndDemo {
 			session.close();
 		}
 		return null;
+	}
+	
+	public static void main(String[] args) {
+		CmtndDemo cd = new CmtndDemo();
+		cd.showCmtnd();
 	}
 }

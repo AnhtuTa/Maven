@@ -6,10 +6,13 @@ import java.sql.Date;
 public class Cmtnd implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	// 4 thuộc tính sau tương ứng 4 cột trong database
 	int studentID;
 	String cmtID;
 	Date ngayCap;
 	String noiCap;
+	
+	// Do Cmtnd quan hệ 1-1 với Student nên có thêm thuộc tính sau, nó tương ứng với cột student_id trong CSDL		
 	Student student;
 	
 	public Cmtnd() {}
