@@ -20,7 +20,7 @@
 		</li>
 		<li><a href="time-table">Timetable</a></li>
 		<li><a href="subject-list">Subject List</a></li>
-		<li><a href="javascript:void(0)">Scoreboard &nabla;</a>
+		<li><a href="javascript:void(0)">Scoreboard &#9660;</a>
 			<ul class="sub-menu">
 				<li><a href="personal-scoreboard">Personal Scoreboard</a></li>
 				<li><a href="student-scoreboard">Student Scoreboard</a></li>	<!-- Tra cuu bang diem cua sinh vien khac -->
@@ -28,14 +28,14 @@
 		</li>
 		
 		<li><a href="course-list">Course List</a></li>	<!-- Danh sach lop hoc -->
-		<li><a href="javascript:void(0)">Teachers &nabla;</a>
+		<li><a href="javascript:void(0)">Teachers &#9660;</a>
 			<ul class="sub-menu">
 				<li class="sub-item-teacher"><a href="search-teacher">Search teacher</a></li>
 				<li class="sub-item-teacher"><a href="search-teaching-schedule">Search teaching schedule</a></li>
 			</ul>
 		</li>
 		<li><a style="width: 140px;" href="exam-schedule">Exam Schedule</a></li>	<!-- Tra cuu lich thi -->
-		<li><a href="javascript:void(0)">Look up &nabla;</a>
+		<li><a href="javascript:void(0)">Look up &#9660;</a>
 			<ul class="sub-menu">
 				<li class="sub-item-lookup"><a href="my-fee">My fee</a></li>
 				<li class="sub-item-lookup"><a href="search-student">Search student</a></li>
