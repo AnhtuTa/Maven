@@ -1,0 +1,12 @@
+"workbench.colorCustomizations": {
+	"editor.background": "#3a3a3a",
+	"activityBar.border": "#5495ff",
+	"badge.background": "#ae00ff",
+	"badge.foreground": "#ffffff",
+	"tab.border": "#5495ff",
+	"tab.activeBackground": "#5495ff",
+	"tab.inactiveBackground": "#8ab6fc",
+	"tab.inactiveForeground": "#000",
+	"editor.selectionBackground": "#5c5c5c",
+	"editorLineNumber.foreground": "#5495ff"
+}

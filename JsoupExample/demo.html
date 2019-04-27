@@ -1,0 +1,66 @@
+ //StudentList.html
+<html>
+<head>
+<title></title>
+<script type="text/javascript">
+	var Students = {
+		stList : [], //mảng các sinh viên
+		addStudent : function(id, name) {
+			var st = {
+				id : id,
+				name : name,
+				getInfo : function() {
+					return this.id + " - " + this.name;
+				}
+			};
+			this.stList.push(st);
+		},
+		removeStudent : function(id) {
+			for (var i = 0; i < this.stList.length; i++) {
+				if (this.stList[i].id == id) {
+					this.stList.splice(i, 1);
+					break;
+				}
+			}
+			;
+		},
+		editStudent : function(id, newName) {
+			for (var i = 0; i < this.stList.length; i++) {
+				if (this.stList[i].id == id) {
+					this.stList[i].name = newName;
+					break;
+				}
+			}
+			;
+		},
+		viewStudents : function() {
+			for (var i = 0; i < this.stList.length; i++) {
+				console.log(this.stList[i].getInfo());
+			}
+			;
+			console.log("===============")
+		}
+	}
+
+	Students.addStudent(101, "Anhtu");
+	Students.addStudent(103, "Huyga");
+	Students.addStudent(105, "Longporn");
+	Students.addStudent(111, "Dat09");
+	Students.addStudent(112, "Toan");
+	Students.addStudent(114, "Nguyen");
+	Students.addStudent(117, "Trung");
+	Students.viewStudents();
+
+	Students.removeStudent(111);
+	Students.viewStudents();
+
+	Students.editStudent(114, "Nguyen Bka");
+	Students.viewStudents();
+
+	var fruits = [ "mango", "guava", "strawberry", "apple", "banana" ];
+	console.log(fruits);
+</script>
+</head>
+<body>
+</body>
+</html>
